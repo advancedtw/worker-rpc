@@ -1,16 +1,21 @@
 {
-    "name": "worker-rpc-example",
+    "name": "@worker-rpc/example",
     "version": "0.0.1",
     "scripts": {
         "dev": "wrangler dev worker.ts"
     },
     "type": "module",
+    "types": "./class.ts",
+    "exports": {
+        ".": "./class.ts"
+    },
     "dependencies": {
         "hono": "4.0.8"
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.2",
         "@cloudflare/workers-types": "4.20240222.0",
-        "wrangler": "3.29.0"
+        "wrangler": "3.29.0",
+        "worker-rpc": "workspace:*"
     }
 }

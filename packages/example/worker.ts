@@ -1,6 +1,10 @@
 export { MyClass } from "./class";
-import { rpc } from "../src";
+import { rpc } from "worker-rpc";
 import { MyClass } from "./class";
+
+interface Env {
+	MyClass: DurableObjectNamespace;
+}
 
 export default {
 	fetch: async (_request, env, _ctx) => {

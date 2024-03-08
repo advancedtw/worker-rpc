@@ -1,4 +1,4 @@
-export { MyClass } from "../example/class";
+export { MyClass } from "@worker-rpc/example";
 
 export default {
 	fetch: async (_request, _env, _ctx) => {

@@ -1,5 +1,5 @@
 node_modules
 .wrangler
-./wrangler.toml
+wrangler.toml
 pnpm-lock.yaml
 __snapshots__

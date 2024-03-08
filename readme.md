@@ -2,7 +2,7 @@
 
 ---
 
-improve the DX of using cloudflare durable objects.
+improve the DX of using cloudflare durable objects and service workers.
 
 ## supported method parameters
 
@@ -10,7 +10,7 @@ improve the DX of using cloudflare durable objects.
 - [x] Typed Arrays
 - [x] Date
 
-## setup
+## setup for durable object
 
 ### install worker-rpc
 
@@ -21,13 +21,12 @@ pnpm install worker-rpc
 ### write your class and extend WorkerRPC
 
 WorkerRPC already implements DurableObject thus taking care of initializing the state and optional bindings.
-if you would like to have a constructor in your class make sure to call super()
 
 ```ts
 // myclass.ts
-import {WorkerRPC} from "worker-rpc"
+import {PersistentWorker} from "worker-rpc"
 
-export MyClass extends WorkerRPC{
+export MyClass extends PersistentWorker{
 
     // when called the method will be async
     // to get the correct type it is recommended to also

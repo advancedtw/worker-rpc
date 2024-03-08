@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "allowJs": true, // allow importing `.js` from `.ts`
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    // Best practices
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    // Some stricter flags
+    "useUnknownInCatchVariables": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "lib": [
+      "esnext"
+    ],
+    "types": [
+      "@cloudflare/workers-types",
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+}

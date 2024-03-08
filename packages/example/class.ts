@@ -1,6 +1,6 @@
-import { WorkerRPC } from "../src/";
+import { PersistentWorker } from "worker-rpc";
 
-export class MyClass extends WorkerRPC<{ KV: KVNamespace }> {
+export class MyClass extends PersistentWorker<{ KV: KVNamespace }> {
 	basic = async (a: number) => {
 		return a + 100;
 	};

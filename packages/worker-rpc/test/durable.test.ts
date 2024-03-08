@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { env } from "cloudflare:test";
 import { rpc } from "../src";
-import { MyClass } from "../example/class";
+import { MyClass } from "@worker-rpc/example";
 
 describe("Worker RPC", () => {
 	it("basic", async () => {
