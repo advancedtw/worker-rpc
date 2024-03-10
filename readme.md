@@ -22,10 +22,8 @@ import {PersistentWorker} from "worker-rpc"
 
 export MyClass extends PersistentWorker{
 
-    // when called the method will be async
-    // to get the correct type it is recommended to also
-    // mark it as async even tough no async call is being made by someMethod()
-    someMethod = async(arg1:number,arg2:string) => {
+
+    someMethod = (arg1:number,arg2:string) => {
         return arg2.length * arg1
     }
 
@@ -56,7 +54,7 @@ interface Env = {
 const app = new Hono<{ Bindings: Env }>()
 
 app.get("/",async(c)=>{
-    const obj = rpc<MyClass>(c.env.MyClass,"optional name")
+    const obj = rpc<MyClass,Env>(c.env.MyClass,"optional name")
     // infered => MyClass.someMethod: (arg1: number, arg2: string) => Promise<number>
     const result = await obj.someMethod(10,"hello")
     return c.text(`yeah rpc: ${result}`)
