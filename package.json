@@ -4,6 +4,9 @@
     "workspaces": [
         "packages/*"
     ],
+    "devDependencies": {
+        "@biomejs/biome": "1.5.3"
+    },
     "scripts": {
         "build": "pnpm run build --filter ./packages/*",
         "test": "pnpm run test --filter ./packages/*"

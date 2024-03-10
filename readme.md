@@ -4,23 +4,17 @@
 
 improve the DX of using cloudflare durable objects and service workers.
 
-## supported method parameters
-
-- [x] number, string, arrays
-- [x] Typed Arrays
-- [x] Date
-
-## setup for durable object
-
-### install worker-rpc
+## install worker-rpc
 
 ```bash
 pnpm install worker-rpc
 ```
 
-### write your class and extend WorkerRPC
+## example with durable object
 
-WorkerRPC already implements DurableObject thus taking care of initializing the state and optional bindings.
+### write your class and extend PersistentWorker
+
+PersistentWorker already implements DurableObject thus taking care of initializing the state and optional bindings.
 
 ```ts
 // myclass.ts
@@ -63,9 +57,16 @@ const app = new Hono<{ Bindings: Env }>()
 
 app.get("/",async(c)=>{
     const obj = rpc<MyClass>(c.env.MyClass,"optional name")
+    // infered => MyClass.someMethod: (arg1: number, arg2: string) => Promise<number>
     const result = await obj.someMethod(10,"hello")
     return c.text(`yeah rpc: ${result}`)
 })
 
 export default app
 ```
+
+## supported method parameters
+
+- [x] number, string, arrays
+- [x] Typed Arrays
+- [x] Date

@@ -1,19 +1,19 @@
 import { PersistentWorker } from "worker-rpc";
 
 export class MyClass extends PersistentWorker<{ KV: KVNamespace }> {
-	basic = async (a: number) => {
+	basic = (a: number) => {
 		return a + 100;
 	};
 
-	towBasic = async (a: number, b: number) => {
+	towBasic = (a: number, b: number) => {
 		return a + b;
 	};
 
-	basicString = async (a: string) => {
+	basicString = (a: string) => {
 		return `string is ${a.length ?? 0} in length `;
 	};
 
-	twoBasicString = async (a: string, b: string) => {
+	twoBasicString = (a: string, b: string) => {
 		return `combined string ${a.length + b.length} in length `;
 	};
 
@@ -32,12 +32,12 @@ export class MyClass extends PersistentWorker<{ KV: KVNamespace }> {
 		return d;
 	};
 
-	complextTypes = async (date: Date) => {
+	complextTypes = (date: Date) => {
 		date.setDate(date.getDate() + 1);
 		return date;
 	};
 
-	typedArray = async (arg: Uint8Array) => {
+	typedArray = (arg: Uint8Array) => {
 		return arg.fill(9);
 	};
 }

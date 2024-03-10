@@ -1,14 +1,11 @@
 import { SerovalJSON, fromJSON, toJSON } from "seroval";
-import queryString from "query-string";
 
 const getParams = async (req: Request) => {
 	const m = req.method;
 
-	if (m === "GET") return queryString.parse(new URL(req.url).search) as Params;
-
 	if (m === "POST") return fromJSON(await req.json()) as Params;
 
-	throw "only get and post are currently supported";
+	throw "only post are currently supported";
 };
 
 export const fetchBody = async (req: Request, target: object) => {
@@ -52,12 +49,12 @@ export const proxyHandler: ProxyHandler<DurableObjectStub | Fetcher> = {
 			const fetcher = Reflect.get(target, "fetch");
 			return async (...args: unknown[]) => {
 				const req = reqBuilder(String(p), args);
-				const a = await Reflect.apply(fetcher, target, [req]);
-				const h = a.headers.get("content-type");
+				const res = await Reflect.apply(fetcher, target, [req]);
+				const h = res.headers.get("content-type");
 				if (h !== "application/json") {
-					return a.body;
+					return res.body;
 				}
-				const data = (await a.json()) as SerovalJSON;
+				const data = (await res.json()) as SerovalJSON;
 				return fromJSON(data);
 			};
 		}
